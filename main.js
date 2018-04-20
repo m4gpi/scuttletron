@@ -1,28 +1,34 @@
-const electron = require('electron')
-const { app, BrowserWindow, ipcMain } = electron
-
 const Path = require('path')
 const url = require('url')
 
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+} = require('electron')
+
 const Window = require('./lib/window')
+const Menu = require('./lib/menu')
 
 var windows = {}
 
 app.on('ready', () => {
-  electron.ipcMain.on('open-background-devtools', function (ev, config) {
-    if (windows.background) {
-      windows.background.webContents.openDevTools({ detach: true })
-    }
-  })
+  console.log("*** Setup Custom Electron Menu ***")
+  Menu()
 
+  console.log("*** Starting Server ***")
   ServerProcess()
-  console.log("*** Server Started ***")
 
-  electron.ipcMain.once('server-started', (ev, config) => {
+  ipcMain.once('server-started', (ev, config) => {
     console.log('*** Starting App ***')
     AppProcess()
   })
 
+  ipcMain.on('open-background-devtools', function (ev, config) {
+    if (windows.background) {
+      windows.background.webContents.openDevTools({ detach: true })
+    }
+  })
 })
 
 app.on('window-all-closed', function () {

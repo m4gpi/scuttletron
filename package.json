@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "depnest": "^1.3.0",
+    "electron-default-menu": "^1.0.1",
     "lodash": "^4.17.5",
     "pull-stream": "^3.6.7",
     "scuttlebot": "^11.2.1",
