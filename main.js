@@ -13,7 +13,7 @@ const Menu = require('./lib/menu')
 var windows = {}
 
 app.on('ready', () => {
-  console.log("*** Setup Custom Electron Menu ***")
+  console.log("*** Configure Custom Electron Menu ***")
   Menu()
 
   console.log("*** Starting Server ***")
