@@ -9,7 +9,7 @@ Server.use(require('scuttlebot/plugins/master'))
 
 var config = require('./config').create().config.sync.load()
 
-const server = Server(config)
+const server = new Server(config)
 
 const manifest = server.getManifest()
 

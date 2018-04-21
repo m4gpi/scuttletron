@@ -10,19 +10,19 @@
       var remoteLog = electron.remote.getGlobal('console').log
       var remoteError = electron.remote.getGlobal('console').error
 
-      console.log = function (...args) {
+      console.log = (...args) => {
         localLog.apply(console, args)
         remoteLog(...args)
       }
 
-      console.error = function (...args) {
+      console.error = (...args) => {
         localError.apply(console, args)
         remoteError(...args)
       }
 
       process.exit = electron.remote.app.quit
       // redirect errors to stderr
-      window.addEventListener('error', function (e) {
+      window.addEventListener('error', (e) => {
         e.preventDefault()
         console.error(e.error.stack || 'Uncaught ' + e.error)
       })

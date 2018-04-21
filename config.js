@@ -3,9 +3,10 @@ const Config = require('ssb-config/inject')
 const Keys = require('ssb-keys')
 const Path = require('path')
 
-const appName = process.env.ssb_appname || 'secrets'
+const appName = process.env.APP_NAME || 'application'
+
 const opts = {
-  port: 8123
+  port: process.env.PORT || 8008
 }
 
 const config = Config(appName, opts)

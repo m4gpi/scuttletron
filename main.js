@@ -13,43 +13,26 @@ const Menu = require('./lib/menu')
 var windows = {}
 
 app.on('ready', () => {
-  console.log("*** Configure Custom Electron Menu ***")
-  Menu()
+  new Menu
+  new ServerProcess
 
-  console.log("*** Starting Server ***")
-  ServerProcess()
-
-  ipcMain.once('server-started', (ev, config) => {
-    console.log('*** Starting App ***')
-    AppProcess()
-  })
-
-  ipcMain.on('open-background-devtools', function (ev, config) {
-    if (windows.background) {
-      windows.background.webContents.openDevTools({ detach: true })
-    }
-  })
+  ipcMain.once('server-started', AppProcess)
+  ipcMain.on('open-background-devtools', openDevTools)
 })
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
-
-const ServerProcess = () => {
+function ServerProcess () {
   if (!windows.background) {
     windows.background = new Window(Path.join(__dirname, 'server.js'), {
       show: false,
-      title: 'secrets-server',
+      title: 'Server',
     })
   }
 }
 
-const AppProcess = () => {
+function AppProcess () {
   if (!windows.main) {
     windows.main = new Window(Path.join(__dirname, 'app.js'), {
-      title: "secrets-app"
+      title: 'App'
     })
 
     windows.main.loadURL(url.format({
@@ -58,9 +41,16 @@ const AppProcess = () => {
       slashes: true
     }))
 
-    windows.main.on('closed', function () {
-      window = null
+    windows.main.on('closed', () => {
+      windows.main = null
+      windows.background = null
+      if (process.platform !== 'darwin') app.quit()
     })
   }
 }
 
+function openDevTools () {
+  if (windows.background) {
+    windows.background.webContents.openDevTools({ detach: true })
+  }
+}
