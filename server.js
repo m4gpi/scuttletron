@@ -7,7 +7,8 @@ Server.use(require('scuttlebot/plugins/master'))
       .use(require('scuttlebot/plugins/gossip'))
       .use(require('scuttlebot/plugins/replicate'))
 
-var config = require('./config').create().config.sync.load()
+const Config = require('./config')
+var config = new Config
 
 const server = new Server(config)
 

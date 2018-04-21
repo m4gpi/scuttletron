@@ -31,7 +31,7 @@ function ServerProcess () {
 
 function AppProcess () {
   if (!windows.main) {
-    windows.main = new Window(Path.join(__dirname, 'app.js'), {
+    windows.main = new Window(Path.join(__dirname, 'app/index.js'), {
       title: 'App'
     })
 
