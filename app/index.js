@@ -1,4 +1,11 @@
 module.exports = function (root, server) {
-  console.log(root)
-  console.log(server)
+  server.whoami((err, msg) => {
+    if (err) {
+      console.error(err)
+    }
+    else {
+      console.log(root)
+      root.innerHTML = msg.id
+    }
+  })
 }

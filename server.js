@@ -1,16 +1,20 @@
 const Server = require('scuttlebot')
 const fs = require('fs')
 const Path = require('path')
-const electron = require('electron')
+const { ipcRenderer } = require('electron')
 
 Server.use(require('scuttlebot/plugins/master'))
       .use(require('scuttlebot/plugins/gossip'))
       .use(require('scuttlebot/plugins/replicate'))
 
 const Config = require('./config')
-var config = new Config
+var config = Config()
+console.log("*** Configuration ***", "\n")
+console.log(config, "\n")
 
-const server = new Server(config)
+const server = Server(config)
+console.log("*** Server ***", "\n")
+console.log(server, "\n")
 
 const manifest = server.getManifest()
 

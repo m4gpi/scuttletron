@@ -10,29 +10,31 @@ const {
 const Window = require('./lib/window')
 const Menu = require('./lib/menu')
 
+const appName = process.env.APP_NAME || "App"
+
 var windows = {}
 
 app.on('ready', () => {
-  new Menu
-  new ServerProcess
+  Menu()
+  ServerProcess()
 
   ipcMain.once('server-started', AppProcess)
   ipcMain.on('open-background-devtools', openDevTools)
 })
 
-function ServerProcess () {
+const ServerProcess = () => {
   if (!windows.background) {
-    windows.background = new Window(Path.join(__dirname, 'server.js'), {
+    windows.background = Window(Path.join(__dirname, 'server.js'), {
       show: false,
       title: 'Server',
     })
   }
 }
 
-function AppProcess () {
+const AppProcess = () => {
   if (!windows.main) {
-    windows.main = new Window(Path.join(__dirname, 'app/index.js'), {
-      title: 'App'
+    windows.main = Window(Path.join(__dirname, 'app/index.js'), {
+      title: appName
     })
 
     windows.main.loadURL(url.format({
@@ -49,7 +51,7 @@ function AppProcess () {
   }
 }
 
-function openDevTools () {
+const openDevTools = () => {
   if (windows.background) {
     windows.background.webContents.openDevTools({ detach: true })
   }

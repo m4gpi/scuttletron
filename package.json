@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/ssbc/ssb-electron-scaffold",
+  "repository": "https://github.com/kgibb8/ssb-electron-scaffold",
   "keywords": [
     "ssb",
     "scuttlebutt",

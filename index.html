@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="root"></div>
   </body>
   <script>
-    const Client = require('ssb-client')
-    const config = require('./config')
+    var Client = require('ssb-client')
+    var config = require('./config')()
 
-    Client(config.keys, config, (err, server) => {
+    Client(config.keys, config, function (err, server) {
       if (err) {
         console.error(err)
       } else {
-        var app = document.getElementById('app')
+        var root = document.getElementById('root')
         var App = require('./app/index')
-        App(app, server)
+        App(root, server)
       }
     })
   </script>
