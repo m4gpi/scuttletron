@@ -1,4 +1,4 @@
-# ssb-electron-scaffold
+# Scuttletron
 
 **Clone and run for a simple app build setup for Scuttlebutt with Electron.**
 
@@ -6,9 +6,9 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/ssbc/ssb-electron-scaffold
+git clone https://github.com/kgibb8/scuttletron
 # Go into the repository
-cd ssb-electron-scaffold
+cd scuttletron
 # Install dependencies
 npm install
 # Run the app
@@ -19,6 +19,11 @@ npm start
 - Node `v8.4.0`
 - Electron
 - Scuttlebot
+
+## Other Scuttlebutt modules for further development
+- [ssb-private](https://github.com/ssbc/ssb-private/)
+- [ssb-backlinks](https://github.com/ssbc/ssb-backlinks)
+- [ssb-ref](https://github.com/ssbc/ssb-ref)
 
 ## Learn about Scuttlebutt
 
