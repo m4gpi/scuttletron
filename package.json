@@ -4,7 +4,8 @@
   "description": "A minimal electron application running with a scuttlebot server",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "electron-rebuild -w leveldown"
   },
   "repository": "https://github.com/kgibb8/scuttletron",
   "keywords": [
@@ -19,7 +20,8 @@
   ],
   "author": "kgibb8",
   "devDependencies": {
-    "electron": "^1.8.4"
+    "electron": "^1.8.6",
+    "electron-rebuild": "~1.7.0"
   },
   "dependencies": {
     "depnest": "^1.3.0",
