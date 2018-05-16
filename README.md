@@ -13,7 +13,11 @@ cd scuttletron
 npm install
 # Run the app
 npm start
+
+# Options
+APP_NAME=scuttletron PORT=4567 npm start
 ```
+
 
 ## Core Dependencies
 - Node `v8.4.0`
