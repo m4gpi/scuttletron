@@ -22,7 +22,7 @@ app.on('ready', () => {
   ipcMain.on('open-background-devtools', openDevTools)
 })
 
-const ServerProcess = () => {
+function ServerProcess () {
   if (!windows.background) {
     windows.background = Window(Path.join(__dirname, 'server.js'), {
       show: false,
@@ -31,7 +31,7 @@ const ServerProcess = () => {
   }
 }
 
-const AppProcess = () => {
+function AppProcess () {
   if (!windows.main) {
     windows.main = Window(Path.join(__dirname, 'app/index.js'), {
       title: appName
@@ -51,8 +51,8 @@ const AppProcess = () => {
   }
 }
 
-const openDevTools = () => {
-  if (windows.background) {
-    windows.background.webContents.openDevTools({ detach: true })
+function openDevTools () {
+  if (windows.main) {
+    windows.main.webContents.openDevTools({ detach: true })
   }
 }

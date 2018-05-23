@@ -9,15 +9,11 @@
   <script>
     var Client = require('ssb-client')
     var config = require('./config')()
+    var App = require('./app/')
 
-    Client(config.keys, config, function (err, server) {
-      if (err) {
-        console.error(err)
-      } else {
-        var root = document.getElementById('root')
-        var App = require('./app/index')
-        App(root, server)
-      }
+    Client(config.keys, config, (err, server) => {
+      if (err) return console.error(err)
+      App(document.getElementById('root'), server)
     })
   </script>
 </html>
